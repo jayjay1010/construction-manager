@@ -1,0 +1,253 @@
+/* =========================
+   Global Reset & Base
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Arial;
+  background: #f6f7fb;
+  color: #111;
+}
+
+
+/* =========================
+   Top Navigation Bar
+========================= */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: #111;
+  color: white;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.userBox {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+
+/* =========================
+   Main Layout Container
+========================= */
+.container {
+  max-width: 980px;
+  margin: 18px auto;
+  padding: 0 14px;
+}
+
+
+/* =========================
+   Card UI Blocks
+========================= */
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================
+   Hide Utility
+   Used to toggle sections/modals
+========================= */
+.hidden {
+  display: none;
+}
+
+/* IMPORTANT:
+   Ensures modal stays hidden even though
+   .modal sets display:flex */
+.modal.hidden {
+  display: none !important;
+}
+
+
+/* =========================
+   Typography
+========================= */
+h2,
+h3 {
+  margin: 0 0 12px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 14px 0;
+}
+
+.muted {
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+
+/* =========================
+   Layout Helpers
+========================= */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.space {
+  justify-content: space-between;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+#btnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 520px;
+}
+
+
+/* =========================
+   Form Controls
+========================= */
+input,
+select,
+button {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+button {
+  border: none;
+  background: #111;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button.ghost {
+  background: #f0f0f0;
+  color: #111;
+}
+
+button.warn {
+  background: #b00020;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   Timecard Layout
+========================= */
+.timecardHeader {
+  display: grid;
+  gap: 8px;
+}
+
+.templateGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.field label {
+  font-size: 13px;
+  color: #444;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.daysRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+
+/* =========================
+   Table Styling
+========================= */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.table th {
+  color: #555;
+  font-weight: 600;
+}
+
+
+/* =========================
+   Modal Overlay
+========================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+
+  /* Center modal content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px;
+  z-index: 1000;
+}
+
+.modalCard {
+  width: 100%;
+  max-width: 720px;
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================
+   Responsive Design
+========================= */
+@media (max-width: 700px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .templateGrid {
+    grid-template-columns: 1fr;
+  }
+
+  #btnGrid {
+    grid-template-columns: 1fr;
+  }
+}

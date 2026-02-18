@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Construction Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">Construction Manager</div>
+    <div class="userBox" id="userBox"></div>
+  </header>
+
+  <main class="container">
+
+    <!-- AUTH -->
+    <section class="card" id="authSection">
+      <h2>Login</h2>
+
+      <div class="grid2">
+        <input type="email" id="loginEmail" placeholder="email" />
+        <input type="password" id="loginPassword" placeholder="password" />
+      </div>
+
+      <div class="row">
+        <button id="btnLogin">Login</button>
+      </div>
+
+      <hr />
+
+      <h3>Create Account</h3>
+
+      <div class="grid2">
+        <input id="regName" placeholder="Name" />
+        <input type="email" id="regEmail" placeholder="email" />
+        <input type="password" id="regPassword" placeholder="password" />
+
+        <select id="regRole">
+          <option value="journeyman">Journeyman</option>
+          <option value="apprentice">Apprentice</option>
+          <option value="foreman">Foreman</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <button id="btnRegister">Create Account</button>
+      </div>
+
+      <p class="muted" id="authMsg"></p>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="card hidden" id="dashSection">
+      <h2>Dashboard</h2>
+
+      <div id="btnGrid">
+        <button id="btnWeekList">My Current Week Timecards</button>
+        <button id="btnNewTimecard">New Timecard</button>
+        <button id="btnLogout">Logout</button>
+      </div>
+    </section>
+
+    <!-- CURRENT WEEK LIST -->
+    <section class="card hidden" id="weekListSection">
+      <div class="row space">
+        <h2>My Current Week Timecards</h2>
+        <button id="btnBackToDash1" class="ghost">Back</button>
+      </div>
+
+      <div id="weekList"></div>
+
+      <div class="row">
+        <button id="btnWeekNewTimecard">+ New Timecard</button>
+      </div>
+    </section>
+
+    <!-- TIME CARD -->
+    <section class="card hidden" id="timecardSection">
+      <div class="row space">
+        <h2>Weekly Timecard</h2>
+        <button id="btnBackToDash2" class="ghost">Back</button>
+      </div>
+
+      <div class="timecardHeader">
+        <div><b>Name:</b> <span id="tcName"></span></div>
+        <div><b>Role:</b> <span id="tcRole"></span></div>
+        <div><b>Week:</b> <span id="tcWeek"></span></div>
+
+        <div class="row">
+          <label for="jobSiteSelect">Job Site</label>
+          <select id="jobSiteSelect"></select>
+          <button id="btnCreateJobSite" class="ghost">+ Create Job Site</button>
+        </div>
+
+        <div><b>Job #:</b> <span id="tcJobNumber"></span></div>
+        <div><b>Status:</b> <span id="tcStatus"></span></div>
+      </div>
+
+      <hr />
+
+      <h3>Quick Fill (Template)</h3>
+
+      <div class="templateGrid">
+        <div class="field">
+          <label>Start</label>
+          <div class="row">
+            <input id="tStart" placeholder="04:00" />
+            <select id="tStartM">
+              <option>AM</option>
+              <option>PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Break Out</label>
+          <div class="row">
+            <input id="tBreakOut" placeholder="08:00" />
+            <select id="tBreakOutM">
+              <option>AM</option>
+              <option>PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Break In</label>
+          <div class="row">
+            <input id="tBreakIn" placeholder="08:30" />
+            <select id="tBreakInM">
+              <option>AM</option>
+              <option>PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>End</label>
+          <div class="row">
+            <input id="tEnd" placeholder="12:30" />
+            <select id="tEndM">
+              <option>AM</option>
+              <option selected>PM</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="daysRow">
+        <label>Days:</label>
+        <label><input type="checkbox" class="dayChk" value="Mon" />Mon</label>
+        <label><input type="checkbox" class="dayChk" value="Tue" />Tue</label>
+        <label><input type="checkbox" class="dayChk" value="Wed" />Wed</label>
+        <label><input type="checkbox" class="dayChk" value="Thu" />Thu</label>
+        <label><input type="checkbox" class="dayChk" value="Fri" />Fri</label>
+        <label><input type="checkbox" class="dayChk" value="Sat" />Sat</label>
+        <label><input type="checkbox" class="dayChk" value="Sun" />Sun</label>
+      </div>
+
+      <div class="row">
+        <button id="btnAddTemplate">Add to Timecard</button>
+        <button id="btnEditDays">Edit Days</button>
+      </div>
+
+      <div id="entriesWrap" class="hidden">
+        <hr />
+        <h3>Entries</h3>
+
+        <div id="entriesTable"></div>
+
+        <div class="row space">
+          <div><b>Total Hours:</b> <span id="tcTotalHours">0</span></div>
+          <button id="btnSubmit" class="warn">Sign &amp; Submit</button>
+        </div>
+      </div>
+
+      <!-- messages -->
+      <p class="muted" id="tcMsg"></p>
+    </section>
+
+    <!-- EDIT MODAL -->
+    <div class="modal hidden" id="editModal">
+      <div class="modalCard">
+        <div class="row space">
+          <h3>Edit Days</h3>
+          <button id="btnCloseEdit" class="ghost">X</button>
+        </div>
+
+        <p class="muted">
+          Select the days you want to edit, then apply new times to only those days.
+        </p>
+
+        <div class="daysRow" id="editDaysRow"></div>
+
+        <hr />
+
+        <div class="templateGrid">
+          <div class="field">
+            <label>Start</label>
+            <div class="row">
+              <input id="eStart" placeholder="04:00" />
+              <select id="eStartM">
+                <option>AM</option>
+                <option>PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Break Out</label>
+            <div class="row">
+              <input id="eBreakOut" placeholder="08:00" />
+              <select id="eBreakOutM">
+                <option>AM</option>
+                <option>PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Break In</label>
+            <div class="row">
+              <input id="eBreakIn" placeholder="08:30" />
+              <select id="eBreakInM">
+                <option>AM</option>
+                <option>PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>End</label>
+            <div class="row">
+              <input id="eEnd" placeholder="12:30" />
+              <select id="eEndM">
+                <option>AM</option>
+                <option selected>PM</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row space">
+          <button id="btnApplyEdit">Apply Changes</button>
+            <button id="btnRemoveDays" class="danger">Remove Selected Days</button>
+        </div>
+
+        <p class="muted" id="editMsg"></p>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
