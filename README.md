@@ -47,6 +47,57 @@ The project demonstrates authentication, protected routes, role-based access con
 
 ---
 
+## Project Structure
+
+construction-manager
+│
+├── Client
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+│
+├── Server
+│   ├── models
+│   ├── routes
+│   ├── middleware
+│   ├── controllers
+│   └── app.js
+│
+├── package.json
+└── README.md
+
+## API Endpoints
+
+Authentication
+
+POST /api/auth/register  
+POST /api/auth/login  
+
+Timecards
+
+GET /api/timecards  
+POST /api/timecards  
+PUT /api/timecards/:id  
+DELETE /api/timecards/:id  
+
+Job Sites
+
+GET /api/jobsites  
+POST /api/jobsites
+
+## Demo
+Watch the project demo here:
+
+https://youtu.be/WZkM5U95RR8
+
+## Future Improvements
+
+Add mobile responsive interface  
+Implement payroll export functionality  
+Add real-time notifications for approvals  
+Add project budgeting and cost tracking  
+Deploy application with cloud database
+
 ## 📦 Installation (Run Locally)
 
 ### 1️⃣ Clone the Repository
@@ -73,3 +124,13 @@ Server running on 3000
 Run the Frontend
 Open:
 Client/index.html 
+
+
+## Author
+
+Jose Jimenez  
+Computer Science Student  
+California State University Northridge  
+
+GitHub  
+https://github.com/jayjay1010/
